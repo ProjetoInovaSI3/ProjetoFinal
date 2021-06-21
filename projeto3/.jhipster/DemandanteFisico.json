@@ -1,0 +1,41 @@
+{
+  "name": "DemandanteFisico",
+  "fields": [
+    {
+      "fieldName": "cpf",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nomeCompleto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "demandaFisica",
+      "otherEntityRelationshipName": "demandanteFisico",
+      "relationshipName": "demanda",
+      "otherEntityField": "descricao",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "demandante_fisico",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210620044223"
+}

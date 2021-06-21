@@ -1,0 +1,68 @@
+entity Endereco{
+    cep Long,
+    logradouro String,
+    bairro String,
+    numero String,
+    uf String,
+    ddd Long 
+}
+entity DemandanteJuridico{
+    cnpj Long,
+    nomeDaEmpresa String,
+    nomefantasia String,
+    email String,
+    telefone Long
+}
+
+entity DemandanteFisico{
+    cpf Long,
+    nomeCompleto String,
+    email String,
+    telefone Long
+}
+    
+entity Curso{
+    nomeDoCurso String,
+    turma String
+}
+
+entity Professor{ 
+    curso String,
+    nomeCompleto String,
+    email String,
+    telefone Long
+}
+
+entity DemandaFisica{
+    descricao String,
+    curso String    
+}
+entity DemandaJuridica{
+    descricao String,
+    curso String
+}
+
+relationship OneToOne{
+     DemandanteFisico {demanda(descricao)} to DemandaFisica,
+     DemandanteJuridico {demanda(descricao)} to DemandaJuridica
+}
+
+relationship ManyToMany{
+    DemandaFisica{endereco(cep)} to Endereco{demanda(descricao)}
+}
+
+ 
+relationship OneToMany{
+    DemandaFisica{curso(nomeDoCurso)} to Curso{demandaFisica(descricao)},
+    Professor{curso(nomeDoCurso)} to Curso{professor(nomeCompleto)},
+    DemandaJuridica{curso(nomeDoCurso)} to Curso{demandaJuridica(descricao)}
+}
+
+ 
+paginate * with pagination
+
+dto * with mapstruct
+ 
+service all with serviceImpl
+
+filter all

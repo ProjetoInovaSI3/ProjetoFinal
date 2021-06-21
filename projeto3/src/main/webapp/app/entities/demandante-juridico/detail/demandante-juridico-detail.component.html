@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandanteJuridico">
+      <h2 data-cy="demandanteJuridicoDetailsHeading"><span>Demandante Juridico</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandanteJuridico.id }}</span>
+        </dd>
+        <dt><span>Cnpj</span></dt>
+        <dd>
+          <span>{{ demandanteJuridico.cnpj }}</span>
+        </dd>
+        <dt><span>Nome Da Empresa</span></dt>
+        <dd>
+          <span>{{ demandanteJuridico.nomeDaEmpresa }}</span>
+        </dd>
+        <dt><span>Nomefantasia</span></dt>
+        <dd>
+          <span>{{ demandanteJuridico.nomefantasia }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ demandanteJuridico.email }}</span>
+        </dd>
+        <dt><span>Telefone</span></dt>
+        <dd>
+          <span>{{ demandanteJuridico.telefone }}</span>
+        </dd>
+        <dt><span>Demanda</span></dt>
+        <dd>
+          <div *ngIf="demandanteJuridico.demanda">
+            <a [routerLink]="['/demanda-juridica', demandanteJuridico.demanda?.id, 'view']">{{ demandanteJuridico.demanda?.descricao }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demandante-juridico', demandanteJuridico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

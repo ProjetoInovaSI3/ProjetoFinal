@@ -1,0 +1,40 @@
+{
+  "name": "Professor",
+  "fields": [
+    {
+      "fieldName": "curso",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomeCompleto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "curso",
+      "otherEntityRelationshipName": "professor",
+      "relationshipName": "curso",
+      "otherEntityField": "nomeDoCurso"
+    }
+  ],
+  "entityTableName": "professor",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210620044225"
+}

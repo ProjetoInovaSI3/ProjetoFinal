@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity DemandanteJuridico.
+    -->
+    <changeSet id="20210620044222-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="demanda_id"
+                                 baseTableName="demandante_juridico"
+                                 constraintName="fk_demandante_juridico__demanda_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="demanda_juridica"/>
+    </changeSet>
+</databaseChangeLog>

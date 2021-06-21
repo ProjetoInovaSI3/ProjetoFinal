@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-demandante-juridico-heading" data-cy="DemandanteJuridicoCreateUpdateHeading">Create or edit a Demandante Juridico</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_cnpj">Cnpj</label>
+          <input type="number" class="form-control" name="cnpj" id="field_cnpj" data-cy="cnpj" formControlName="cnpj" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nomeDaEmpresa">Nome Da Empresa</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomeDaEmpresa"
+            id="field_nomeDaEmpresa"
+            data-cy="nomeDaEmpresa"
+            formControlName="nomeDaEmpresa"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nomefantasia">Nomefantasia</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomefantasia"
+            id="field_nomefantasia"
+            data-cy="nomefantasia"
+            formControlName="nomefantasia"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_telefone">Telefone</label>
+          <input type="number" class="form-control" name="telefone" id="field_telefone" data-cy="telefone" formControlName="telefone" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_demanda">Demanda</label>
+          <select class="form-control" id="field_demanda" data-cy="demanda" name="demanda" formControlName="demanda">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                demandaJuridicaOption.id === editForm.get('demanda')!.value?.id ? editForm.get('demanda')!.value : demandaJuridicaOption
+              "
+              *ngFor="let demandaJuridicaOption of demandasCollection; trackBy: trackDemandaJuridicaById"
+            >
+              {{ demandaJuridicaOption.descricao }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

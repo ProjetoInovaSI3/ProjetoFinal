@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="DemandanteJuridicoHeading">
+    <span>Demandante Juridicos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demandante-juridico"
+        [routerLink]="['/demandante-juridico/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Demandante Juridico </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="demandanteJuridicos?.length === 0">
+    <span>No demandanteJuridicos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="demandanteJuridicos && demandanteJuridicos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cnpj"><span>Cnpj</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomeDaEmpresa"><span>Nome Da Empresa</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomefantasia"><span>Nomefantasia</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="telefone"><span>Telefone</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="demanda.descricao"><span>Demanda</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demandanteJuridico of demandanteJuridicos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/demandante-juridico', demandanteJuridico.id, 'view']">{{ demandanteJuridico.id }}</a>
+          </td>
+          <td>{{ demandanteJuridico.cnpj }}</td>
+          <td>{{ demandanteJuridico.nomeDaEmpresa }}</td>
+          <td>{{ demandanteJuridico.nomefantasia }}</td>
+          <td>{{ demandanteJuridico.email }}</td>
+          <td>{{ demandanteJuridico.telefone }}</td>
+          <td>
+            <div *ngIf="demandanteJuridico.demanda">
+              <a [routerLink]="['/demanda-juridica', demandanteJuridico.demanda?.id, 'view']">{{
+                demandanteJuridico.demanda?.descricao
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/demandante-juridico', demandanteJuridico.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/demandante-juridico', demandanteJuridico.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(demandanteJuridico)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="demandanteJuridicos && demandanteJuridicos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

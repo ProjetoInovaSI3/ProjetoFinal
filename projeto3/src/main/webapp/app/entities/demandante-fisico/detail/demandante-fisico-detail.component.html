@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandanteFisico">
+      <h2 data-cy="demandanteFisicoDetailsHeading"><span>Demandante Fisico</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandanteFisico.id }}</span>
+        </dd>
+        <dt><span>Cpf</span></dt>
+        <dd>
+          <span>{{ demandanteFisico.cpf }}</span>
+        </dd>
+        <dt><span>Nome Completo</span></dt>
+        <dd>
+          <span>{{ demandanteFisico.nomeCompleto }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ demandanteFisico.email }}</span>
+        </dd>
+        <dt><span>Telefone</span></dt>
+        <dd>
+          <span>{{ demandanteFisico.telefone }}</span>
+        </dd>
+        <dt><span>Demanda</span></dt>
+        <dd>
+          <div *ngIf="demandanteFisico.demanda">
+            <a [routerLink]="['/demanda-fisica', demandanteFisico.demanda?.id, 'view']">{{ demandanteFisico.demanda?.descricao }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demandante-fisico', demandanteFisico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

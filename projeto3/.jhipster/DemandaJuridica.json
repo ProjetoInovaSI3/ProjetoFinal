@@ -1,0 +1,32 @@
+{
+  "name": "DemandaJuridica",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "curso",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "curso",
+      "otherEntityRelationshipName": "demandaJuridica",
+      "relationshipName": "curso",
+      "otherEntityField": "nomeDoCurso"
+    }
+  ],
+  "entityTableName": "demanda_juridica",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210620044227"
+}

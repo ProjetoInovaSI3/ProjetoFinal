@@ -1,0 +1,49 @@
+{
+  "name": "Endereco",
+  "fields": [
+    {
+      "fieldName": "cep",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "logradouro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ddd",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "demandaFisica",
+      "otherEntityRelationshipName": "endereco",
+      "relationshipName": "demanda",
+      "otherEntityField": "descricao",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "endereco",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210620044221"
+}

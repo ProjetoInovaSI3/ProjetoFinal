@@ -1,0 +1,40 @@
+{
+  "name": "DemandaFisica",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "curso",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "curso",
+      "otherEntityRelationshipName": "demandaFisica",
+      "relationshipName": "curso",
+      "otherEntityField": "nomeDoCurso"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "demanda",
+      "relationshipName": "endereco",
+      "otherEntityField": "cep",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "demanda_fisica",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210620044226"
+}

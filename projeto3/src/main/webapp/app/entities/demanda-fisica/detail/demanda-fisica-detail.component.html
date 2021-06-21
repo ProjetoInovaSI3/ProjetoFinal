@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandaFisica">
+      <h2 data-cy="demandaFisicaDetailsHeading"><span>Demanda Fisica</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandaFisica.id }}</span>
+        </dd>
+        <dt><span>Descricao</span></dt>
+        <dd>
+          <span>{{ demandaFisica.descricao }}</span>
+        </dd>
+        <dt><span>Curso</span></dt>
+        <dd>
+          <span>{{ demandaFisica.curso }}</span>
+        </dd>
+        <dt><span>Endereco</span></dt>
+        <dd>
+          <span *ngFor="let endereco of demandaFisica.enderecos; let last = last">
+            <a [routerLink]="['/endereco', endereco?.id, 'view']">{{ endereco.cep }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demanda-fisica', demandaFisica.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

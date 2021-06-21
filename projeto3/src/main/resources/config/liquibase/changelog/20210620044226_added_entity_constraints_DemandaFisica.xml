@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity DemandaFisica.
+    -->
+    <changeSet id="20210620044226-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="demanda_fisica_id"
+                                 baseTableName="rel_demanda_fisica__endereco"
+                                 constraintName="fk_rel_demanda_fisica__endereco__demanda_fisica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="demanda_fisica"/>
+
+        <addForeignKeyConstraint baseColumnNames="endereco_id"
+                                 baseTableName="rel_demanda_fisica__endereco"
+                                 constraintName="fk_rel_demanda_fisica__endereco__endereco_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="endereco"/>
+    </changeSet>
+</databaseChangeLog>
